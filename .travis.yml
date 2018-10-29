@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run sudharsan/casts-docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "cast-docker-react"
+  env: "cast-docker-react-env"
+  bucket_name: "elasticbeanstalk-us-east-1-066917571071"
+  bucket_path: "cast-docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
